@@ -9,8 +9,10 @@ input : *text*
 
 output :
 
-the	5696	
+the	5696 
+
 a	2274	
+
 to	2189	
 of	1675	
 is	1576	
@@ -19,4 +21,3 @@ and	1223
 that	1033	
 as	920	
 for	912	
-

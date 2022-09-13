@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="TheMostPopularWord:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/TheMostPopularWord_jar</output-path>
+    <root id="archive" name="TheMostPopularWord.jar">
+      <element id="module-output" name="TheMostPopularWord" />
+    </root>
+  </artifact>
+</component>

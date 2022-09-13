@@ -1,46 +1,52 @@
 package com.company;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Set;
 
 public class Main {
 
     // main() method - entry point to start execution
     public static void main(String[] args) throws IOException {
-        String fileName= "./BRN2.txt";
-       // String oldLine = "";
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        File f = new File("./BRN2.txt");
-        BufferedReader fin = new BufferedReader(new FileReader(f));
-        String name;
-        String readLine;
-        String outputLine=null;
-        int ik=0;
-        while ((readLine = fin.readLine()) != null) outputLine=readLine;
-        System.out.println(outputLine);
 
+        String fileName = "./inputText.txt";
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+
+        Scanner scanner = new Scanner(new File("./inputText.txt"));
+        String outputLine = scanner.useDelimiter("\\A").next();
+        scanner.close();   //        BufferedReader fin = new BufferedReader(new FileReader(f));
 
         // тест
         String testStr = "Science blank Maths blank blank"
                 + " Physics blank Maths";
 
         // вызов метода с сортировкой
+        outputLine = outputLine.replace("\n", " ")
+                .replace("\r", " ")
+                .replace("\t", " ")
+                .replace(".", " ")
+                .replaceAll("[0-9]", " ")
+                .replace(",", " ")
+                .replace(":", " ")
+                .replace("{", " ")
+                .replace("\"", " ")
+                .replace("}", " ")
+                .replace("(", " ")
+                .replace(")", " ")
+                .replace(";", " ")
+                .replace("<", " ")
+                .replace(">", " ")
+                .replace("/", " ")
+                .trim().replaceAll(" +", " ");
+
         countAndPrintRepeatedWordOccurences(outputLine);
     }
 
-    /**
-     * this method is used
-     * to count number repeated word occurrences
-     * @param //fileName
-     */
     public static void countAndPrintRepeatedWordOccurences(
             String strContent) {
 
@@ -92,7 +98,7 @@ public class Main {
         System.out.println("======" + "\t\t" + "=====");
 
 
-        try (PrintWriter writer = new PrintWriter(new File("test.csv"))) {
+        try (PrintWriter writer = new PrintWriter(new File("output.csv"))) {
 
             StringBuilder sb = new StringBuilder();
 
@@ -106,12 +112,10 @@ public class Main {
         }
 
 
-        try (PrintWriter writer = new PrintWriter(new File("test.csv"))) {
+        try (PrintWriter writer = new PrintWriter(new File("output.csv"))) {
 
             StringBuilder sb = new StringBuilder();
             // Step 10: Again print after sorting
-
-
 
 
             for (Map.Entry<String, Integer> entry :
@@ -124,7 +128,6 @@ public class Main {
                         + "\t\t" + entry.getValue());
 
 
-
                 //System.out.println("done!");
             }
             writer.write(sb.toString());
@@ -133,8 +136,9 @@ public class Main {
         }
     }
 
-        /**
+    /**
      * this method sort acc. to count value
+     *
      * @param mapOfRepeatedWord
      * @return
      */
@@ -166,7 +170,7 @@ public class Main {
                 new LinkedHashMap<String, Integer>();
 
         // повторение списка и сохранение в LinkedHahsMap
-        for(Map.Entry<String, Integer> map : listOfwordEntry){
+        for (Map.Entry<String, Integer> map : listOfwordEntry) {
             wordLHMap.put(map.getKey(), map.getValue());
         }
 
